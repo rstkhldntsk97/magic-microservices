@@ -38,3 +38,6 @@ build/
 .DS_Store
 
 .idea/
+.idea/workspace.xml
+.idea/misc.xml
+.idea/encodings.xml
