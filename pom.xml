@@ -6,7 +6,11 @@
 
     <groupId>com.rstkhldntsk</groupId>
     <artifactId>magic-microservices</artifactId>
+    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>customer</module>
+    </modules>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
