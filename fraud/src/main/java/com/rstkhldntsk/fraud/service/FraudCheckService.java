@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 public record FraudCheckService(FraudRepository fraudRepository) {
 
     public boolean isFraudulentCustomer(Long customerId) {
-        fraudRepository.save(
+        fraudRepository.saveAndFlush(
                 FraudCheckHistory.builder()
                         .isFraudster(false)
                         .customerId(customerId)

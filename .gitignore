@@ -4,6 +4,9 @@ target/
 !**/src/test/**/target/
 
 ### IntelliJ IDEA ###
+.idea/workspace.xml
+.idea/misc.xml
+.idea/encodings.xml
 .idea/modules.xml
 .idea/jarRepositories.xml
 .idea/compiler.xml
@@ -36,8 +39,3 @@ build/
 
 ### Mac OS ###
 .DS_Store
-
-.idea/
-.idea/workspace.xml
-.idea/misc.xml
-.idea/encodings.xml
