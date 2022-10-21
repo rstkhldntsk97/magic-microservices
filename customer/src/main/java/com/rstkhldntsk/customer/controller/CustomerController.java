@@ -1,6 +1,6 @@
 package com.rstkhldntsk.customer.controller;
 
-import com.rstkhldntsk.customer.dto.CustomerRegistrationRequest;
+import com.rstkhldntsk.client.customer.CustomerRegistrationRequest;
 import com.rstkhldntsk.customer.service.CustomerService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;

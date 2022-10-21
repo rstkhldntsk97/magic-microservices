@@ -1,4 +1,4 @@
-package com.rstkhldntsk.customer.dto;
+package com.rstkhldntsk.client.customer;
 
 public record CustomerRegistrationRequest(
         String firstName,
