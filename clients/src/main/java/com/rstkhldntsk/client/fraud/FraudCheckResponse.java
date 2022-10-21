@@ -1,4 +1,4 @@
-package com.rstkhldntsk.fraud.dto;
+package com.rstkhldntsk.client.fraud;
 
 public record FraudCheckResponse(Boolean isFraudster) {
 

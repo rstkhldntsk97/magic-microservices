@@ -1,14 +1,13 @@
 package com.rstkhldntsk.customer.service;
 
+import com.rstkhldntsk.client.fraud.FraudClient;
 import com.rstkhldntsk.customer.dto.CustomerRegistrationRequest;
-import com.rstkhldntsk.customer.dto.FraudCheckResponse;
 import com.rstkhldntsk.customer.model.Customer;
 import com.rstkhldntsk.customer.reposotory.CustomerRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
 @Service
-public record CustomerService(CustomerRepository customerRepository, RestTemplate restTemplate) {
+public record CustomerService(CustomerRepository customerRepository, FraudClient fraudClient) {
 
     public Customer registerCustomer(CustomerRegistrationRequest customerRegistrationRequest) {
         var customer = Customer.builder()
@@ -17,11 +16,7 @@ public record CustomerService(CustomerRepository customerRepository, RestTemplat
                 .email(customerRegistrationRequest.email())
                 .build();
         Customer persistedCustomer = customerRepository.saveAndFlush(customer);
-        var fraudCheckResponse = restTemplate.getForObject(
-                "http://FRAUD/api/v1/fraud-check/{customerId}",
-                FraudCheckResponse.class,
-                customer.getId()
-        );
+        var fraudCheckResponse = fraudClient.isFraudster(customer.getId());
         if (fraudCheckResponse.isFraudster()) {
             throw new IllegalStateException("fraudster");
         }
