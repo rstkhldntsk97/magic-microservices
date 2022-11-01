@@ -36,21 +36,21 @@ class CustomerServiceTest {
         CustomerRepository customerRepository = Mockito.mock(CustomerRepository.class);
         RabbitMQMessageProducer producer = Mockito.mock(RabbitMQMessageProducer.class);
         customerService = new CustomerService(customerRepository, fraudClient, producer);
-        when(fraudClient.isFraudster(anyLong())).thenReturn(new FraudCheckResponse(false));
+
         when(customerRepository.saveAndFlush(any(Customer.class))).thenReturn(testCustomer);
     }
 
     @Test
     public void shouldRegisterCustomer() {
         CustomerRegistrationRequest customerRegistrationRequest = new CustomerRegistrationRequest("firstName", "lastName", "email@gmail.com");
-        Customer registerCustomer = customerService.registerCustomer(customerRegistrationRequest);
-        assertEquals(testCustomer, registerCustomer);
+        when(fraudClient.isFraudster(anyLong())).thenReturn(new FraudCheckResponse(false));
+        assertEquals(testCustomer, customerService.registerCustomer(customerRegistrationRequest));
     }
 
     @Test
     public void shouldThrowExceptionWhenCustomerIsFraudulent() {
-        when(fraudClient.isFraudster(anyLong())).thenReturn(new FraudCheckResponse(true));
         CustomerRegistrationRequest customerRegistrationRequest = new CustomerRegistrationRequest("firstName", "lastName", "email@gmail.com");
+        when(fraudClient.isFraudster(anyLong())).thenReturn(new FraudCheckResponse(true));
         assertThrows(IllegalStateException.class, () -> customerService.registerCustomer(customerRegistrationRequest));
     }
 
