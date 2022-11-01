@@ -18,7 +18,7 @@ public record CustomerService(CustomerRepository customerRepository, FraudClient
                 .email(customerRegistrationRequest.email())
                 .build();
         Customer persistedCustomer = customerRepository.saveAndFlush(customer);
-        var fraudCheckResponse = fraudClient.isFraudster(customer.getId());
+        var fraudCheckResponse = fraudClient.isFraudster(persistedCustomer.getId());
         if (fraudCheckResponse.isFraudster()) {
             throw new IllegalStateException("fraudster");
         }
