@@ -5,7 +5,7 @@ import com.rstkhldntsk.client.customer.CustomerRegistrationRequest;
 import com.rstkhldntsk.client.fraud.FraudClient;
 import com.rstkhldntsk.client.notification.NotificationRequest;
 import com.rstkhldntsk.customer.model.Customer;
-import com.rstkhldntsk.customer.reposotory.CustomerRepository;
+import com.rstkhldntsk.customer.repository.CustomerRepository;
 import org.springframework.stereotype.Service;
 
 @Service

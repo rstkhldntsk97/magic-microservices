@@ -1,4 +1,4 @@
-package com.rstkhldntsk.customer.reposotory;
+package com.rstkhldntsk.customer.repository;
 
 import com.rstkhldntsk.customer.model.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
