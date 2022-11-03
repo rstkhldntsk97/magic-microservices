@@ -38,6 +38,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: .
+          file: ./eureka/dockerfile
           push: true
           tags: rstkhldntsk/eureka:latest
 
